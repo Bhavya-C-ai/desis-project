@@ -1,0 +1,37 @@
+create database demo;
+use demo;
+CREATE TABLE Expense (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    amount DECIMAL(20, 2) NOT NULL,
+    type ENUM('expense') DEFAULT 'expense',
+    date DATE NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    user_email VARCHAR(50),
+    -- location user
+    FOREIGN KEY (user_email) references user(email)
+);
+
+CREATE TABLE incomes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    amount DECIMAL(20, 2) NOT NULL,
+    type ENUM('income') DEFAULT 'income',
+    date DATE NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    user_email VARCHAR(50),
+    FOREIGN KEY (user_email) references user(email)
+);
+
+CREATE TABLE user(
+	email VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    psswrd VARCHAR(20) NOT NULL
+);
+select * from expense;
