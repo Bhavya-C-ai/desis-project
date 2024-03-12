@@ -13,7 +13,9 @@ function Navigation({ active, setActive }) {
   return (
     <NavStyled>
       {active === 5 ? (
-        <div className="user-not-exist">User doesn't exist</div>
+        <div className="user-not-exist">
+          <h3> Please sign up if you're new here or log in if you already have an existing account to unlock all our functionalities.</h3>
+        </div>
       ) : (
         <>
           <div className="user-con">
@@ -106,6 +108,10 @@ const NavStyled = styled.nav`
     }
   }
 
+  .user-not-exist {
+    padding: 20px;
+    align-items:center;
+  }
   .active {
     color: rgba(34, 34, 96, 1) !important;
     i {

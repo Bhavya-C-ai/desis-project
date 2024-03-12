@@ -54,7 +54,8 @@ const LoginComponent = () => {
           </div>
         ) : (
           <div>
-            <h2>Sign Up</h2>
+            <h2 style={{ padding: "10px" }}>Sign Up</h2>
+
             <input
               type="text"
               placeholder="Username"
@@ -86,11 +87,13 @@ const LoginStyled = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  padding-top:90px;
 
   .tabs {
     display: flex;
-    max-width: 200px;
+    min-width: 400px;
     gap: 10px;
+    padding: 20px;
   }
 
   .tabs button {
@@ -98,7 +101,7 @@ const LoginStyled = styled.div`
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 25px;
     color: #333;
     transition: all 0.3s ease;
   }
@@ -111,24 +114,24 @@ const LoginStyled = styled.div`
 
   .form-container {
     width: 100%;
-    max-width: 400px;
-    padding: 30px;
+    max-width: 600px;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-
+  
   input[type='text'],
   input[type='password'],
   input[type='email'],
   button {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     margin-top: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .signLog{
