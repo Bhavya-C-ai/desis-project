@@ -6,40 +6,46 @@ import { menuItems } from "../../utils/menuItems";
 import Button from "../Button/Button";
 
 function Navigation({ active, setActive }) {
-    const handleSignOut = () => {
-        setActive(5);
-    };
+  const handleSignOut = () => {
+    setActive(5);
+  };
 
-    return (
-        <NavStyled>
-            <div className="user-con">
-                <img src={avatar} alt="" />
-                <div className="text">
-                    <h2>Mike</h2>
-                    <p>Your Money</p>
-                </div>
+  return (
+    <NavStyled>
+      {active === 5 ? (
+        <div className="user-not-exist">User doesn't exist</div>
+      ) : (
+        <>
+          <div className="user-con">
+            <img src={avatar} alt="" />
+            <div className="text">
+              <h2>Mike</h2>
+              <p>Your Money</p>
             </div>
-            <ul className="menu-items">
-                {menuItems.map((item) => {
-                    return (
-                        <li
-                            key={item.id}
-                            onClick={() => setActive(item.id)}
-                            className={active === item.id ? "active" : ""}
-                        >
-                            {item.icon}
-                            <span>{item.title}</span>
-                        </li>
-                    );
-                })}
-            </ul>
-            <div className="bottom-nav">
-                <li onClick={handleSignOut}>
-                    {signout} Sign Out 
+          </div>
+          <ul className="menu-items">
+            {menuItems.filter(item => item.id !== 5).map((item) => {
+              return (
+                <li
+                  key={item.id}
+                  onClick={() => setActive(item.id)}
+                  className={active === item.id ? "active" : ""}
+                >
+                  {item.icon}
+                  <span>{item.title}</span>
                 </li>
-            </div>
-        </NavStyled>
-    );
+              );
+            })}
+          </ul>
+        </>
+      )}
+      <div className="bottom-nav">
+        <li onClick={handleSignOut} style={{ cursor: "pointer" }}>
+          {signout} Sign Out
+        </li>
+      </div>
+    </NavStyled>
+  );
 }
 
 const NavStyled = styled.nav`

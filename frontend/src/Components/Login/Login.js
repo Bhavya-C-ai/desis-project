@@ -9,7 +9,7 @@ function Login() {
     return (
         <LoginStyled>
             <InnerLayout>
-                {/* <h1>Login</h1> */}
+                <h1>Login Form</h1>
                 <LoginComponent />
             </InnerLayout>
         </LoginStyled>

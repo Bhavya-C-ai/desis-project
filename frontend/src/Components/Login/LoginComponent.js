@@ -89,6 +89,7 @@ const LoginStyled = styled.div`
 
   .tabs {
     display: flex;
+    max-width: 200px;
     gap: 10px;
   }
 
@@ -111,7 +112,7 @@ const LoginStyled = styled.div`
   .form-container {
     width: 100%;
     max-width: 400px;
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
