@@ -17,11 +17,11 @@ const LoginComponent = () => {
   };
 
   const handleLogin = () => {
-    console.log('Logging in with username:', loginUsername, 'and password:', loginPassword);
+    // console.log('Logging in with username:', loginUsername, 'and password:', loginPassword);
   };
 
   const handleSignup = () => {
-    console.log('Signing up with username:', signupUsername, 'password:', signupPassword, 'and email:', email);
+    // console.log('Signing up with username:', signupUsername, 'password:', signupPassword, 'and email:', email);
   };
 
   return (
@@ -39,8 +39,8 @@ const LoginComponent = () => {
           <div>
             <h2>Login</h2>
             <input
-              type="text"
-              placeholder="Username"
+              type="email"
+              placeholder="Email"
               value={loginUsername}
               onChange={(e) => setLoginUsername(e.target.value)}
             />
@@ -57,8 +57,9 @@ const LoginComponent = () => {
             <h2 style={{ padding: "10px" }}>Sign Up</h2>
 
             <input
-              type="text"
-              placeholder="Username"
+            type="email"
+            placeholder="Email"
+              
               value={signupUsername}
               onChange={(e) => setSignupUsername(e.target.value)}
             />
@@ -69,8 +70,8 @@ const LoginComponent = () => {
               onChange={(e) => setSignupPassword(e.target.value)}
             />
             <input
-              type="email"
-              placeholder="Email"
+              type="text"
+              placeholder="Username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
