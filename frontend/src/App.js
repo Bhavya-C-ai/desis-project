@@ -11,7 +11,7 @@ import Login from './Components/Login/Login.js';
 import { useGlobalContext } from './context/globalContext';
 
 function App() {
-  const [active, setActive] = useState(1)
+  const [active, setActive] = useState(5)
 
   const global = useGlobalContext()
   console.log(global);
