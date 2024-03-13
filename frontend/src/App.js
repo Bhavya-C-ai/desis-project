@@ -1,17 +1,19 @@
 import React, {useState, useMemo} from 'react'
+import 'chart.js';
 import styled from "styled-components";
 import bg from './img/bg.png'
 import {MainLayout} from './styles/Layouts'
 import Orb from './Components/Orb/Orb'
 import Navigation from './Components/Navigation/Navigation'
 import Dashboard from './Components/Dashboard/Dashboard';
+import Transactions from './Components/Transactions/Transactions';
 import Income from './Components/Income/Income'
 import Expenses from './Components/Expenses/Expenses';
 import Login from './Components/Login/Login.js';
 import { useGlobalContext } from './context/globalContext';
 
 function App() {
-  const [active, setActive] = useState(5)
+  const [active, setActive] = useState(1)
 
   const global = useGlobalContext()
   console.log(global);
@@ -21,7 +23,7 @@ function App() {
       case 1:
         return <Dashboard />
       case 2:
-        return <Dashboard />
+        return <Transactions />
       case 3:
         return <Income />
       case 4: 
