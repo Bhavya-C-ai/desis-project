@@ -20,6 +20,9 @@ public class RoutesController {
     @Autowired
     private IncomeController incomeController;
 
+    @Autowired
+    private SuggestionController suggestionController;
+
     @PostMapping("/add-expense")
     public ResponseEntity<String> addExpense(@RequestBody Expense expense) {
         return expenseController.addExpense(expense);
@@ -49,5 +52,9 @@ public class RoutesController {
     public ResponseEntity<String> deleteIncome(@PathVariable Long id) {
         return incomeController.deleteIncome(id);
     }
-}
 
+    @GetMapping("/get-suggestion")
+    public ResponseEntity<List<Expense>> getSuggestion(){
+        return suggestionController.getSuggestion();
+    }
+}
