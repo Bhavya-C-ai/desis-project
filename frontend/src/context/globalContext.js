@@ -11,6 +11,7 @@ export const GlobalProvider = ({children}) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
+    const [modifiedExpenses, setModifiedExpenses] = useState([])
     const [error, setError] = useState(null)
 
     //calculate incomes
@@ -86,11 +87,18 @@ export const GlobalProvider = ({children}) => {
         return history.slice(0, 3)
     }
 
+    const getModifiedExpenses = async () => {
+        const response = await axios.get(`${BASE_URL}get-suggestion`)
+        setModifiedExpenses(response.data)
+        console.log(response.data)
+    }
+
 
     return (
         <GlobalContext.Provider value={{
             addIncome,
             getIncomes,
+            modifiedExpenses,
             incomes,
             deleteIncome,
             expenses,
@@ -102,6 +110,7 @@ export const GlobalProvider = ({children}) => {
             totalBalance,
             transactionHistory,
             error,
+            getModifiedExpenses,
             setError
         }}>
             {children}
