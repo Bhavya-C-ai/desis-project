@@ -10,7 +10,7 @@ import com.example.expensetrackerbackend.entity.Expense;
 import com.example.expensetrackerbackend.entity.Income;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
 public class RoutesController {
 
@@ -53,8 +53,9 @@ public class RoutesController {
         return incomeController.deleteIncome(id);
     }
 
-    @GetMapping("/get-suggestion")
-    public ResponseEntity<List<Expense>> getSuggestion(){
-        return suggestionController.getSuggestion();
+    @GetMapping("/get-suggestion/{level}")
+    public ResponseEntity<List<Expense>> getSuggestion(@PathVariable String level){
+        System.out.println(level);
+        return suggestionController.getSuggestion(level);
     }
 }
