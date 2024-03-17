@@ -87,11 +87,15 @@ export const GlobalProvider = ({children}) => {
         return history.slice(0, 3)
     }
 
-    const getModifiedExpenses = async () => {
-        const response = await axios.get(`${BASE_URL}get-suggestion`)
-        setModifiedExpenses(response.data)
-        console.log(response.data)
-    }
+    const getModifiedExpensesByLevel = async (level) => {
+        try {
+            const response = await axios.get(`${BASE_URL}get-suggestion/${level}`);
+            setModifiedExpenses(response.data);
+        } catch (error) {
+            setError(error.response.data.message);
+        }
+    };
+    
 
 
     return (
@@ -110,7 +114,7 @@ export const GlobalProvider = ({children}) => {
             totalBalance,
             transactionHistory,
             error,
-            getModifiedExpenses,
+            getModifiedExpensesByLevel,
             setError
         }}>
             {children}
