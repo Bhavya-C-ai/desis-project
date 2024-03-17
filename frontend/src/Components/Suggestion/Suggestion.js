@@ -4,19 +4,19 @@ import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
 import { dollar } from '../../utils/Icons';
 import PieChart from '../Chart/PieChart';
-import ModifiedExpenses from './ModifiedExpenses'; // Import the ModifiedExpenses component
+import ModifiedExpenses from './ModifiedExpenses';
 
 function Suggestion() {
-    const { expenses, modifiedExpenses, getModifiedExpenses, getExpenses} = useGlobalContext();
+    const { expenses, modifiedExpenses, getModifiedExpensesByLevel, getExpenses } = useGlobalContext();
     const [savingsPerCategory, setSavingsPerCategory] = useState({});
+    const [savingsLevel, setSavingsLevel] = useState('moderate'); // Default savings level
 
     useEffect(() => {
-        getModifiedExpenses()
-        getExpenses()
-    }, [])
+        getModifiedExpensesByLevel(savingsLevel); // Pass savingsLevel to fetch modified expenses
+        getExpenses();
+    }, [savingsLevel]);
 
     useEffect(() => {
-        // Calculate potential savings per category if expenses and modifiedExpenses are defined
         if (expenses && modifiedExpenses) {
             const savings = calculateSavings(expenses, modifiedExpenses);
             setSavingsPerCategory(savings);
@@ -70,20 +70,26 @@ function Suggestion() {
         return expenses.reduce((total, expense) => total + expense.amount, 0);
     };
 
+    const handleSavingsLevelChange = (level) => {
+        setSavingsLevel(level);
+    };
+
     return (
         <SuggestionsStyled>
             <InnerLayout>
-                <h1>Suggestions</h1>
+                <h1 style={{ textAlign: 'center' }}>Suggestions</h1>
+                <div className="savings-options">
+                    <Button onClick={() => handleSavingsLevelChange('little')}>Save a Little</Button>
+                    <Button onClick={() => handleSavingsLevelChange('moderate')}>Save Moderately</Button>
+                    <Button onClick={() => handleSavingsLevelChange('lot')}>Save a Lot</Button>
+                </div>
                 <div className="stats-con">
                     <div className="chart-con">
-                    <h2>Potential Savings by Category</h2>
+                        <h2>Potential Expense by Category</h2>
                         <PieChart expenses={modifiedExpenses} />
-                        {/* Render the PieChart component with modified expenses */}
                     </div>
                     <div className="savings-con">
-                        {/* Display potential savings heading */}
                         <h2 style={{ marginBottom: '10px' }}>Potential Savings</h2>
-                        {/* Display savings per category */}
                         {Object.entries(savingsPerCategory).map(([category, savings]) => (
                             <div className="savings-item" key={category}>
                                 <p>
@@ -94,7 +100,6 @@ function Suggestion() {
                     </div>
                 </div>
                 <div className="history-con">
-                    {/* Render the ModifiedExpenses component */}
                     <ModifiedExpenses />
                 </div>
             </InnerLayout>
@@ -103,6 +108,12 @@ function Suggestion() {
 }
 
 const SuggestionsStyled = styled.div`
+    .savings-options {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
     .stats-con {
         height: 450px;
         display: grid;
@@ -144,6 +155,26 @@ const SuggestionsStyled = styled.div`
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+    }
+`;
+
+const Button = styled.button`
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin 10px;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+
+    &:focus {
+        outline: none;
     }
 `;
 
