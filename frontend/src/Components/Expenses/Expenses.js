@@ -32,7 +32,7 @@ function Expenses() {
                                 description={description} 
                                 amount={amount} 
                                 date={date} 
-                                type={type}
+                                type='expense'
                                 category={category} 
                                 indicatorColor="var(--color-green)"
                                 deleteItem={deleteExpense}
