@@ -95,6 +95,17 @@ export const GlobalProvider = ({children}) => {
             setError(error.response.data.message);
         }
     };
+
+    const updateExpense = async (updatedExpense) => {
+        try {
+            console.log("hii")
+            const response = await axios.put(`${BASE_URL}update-expense/${updatedExpense.id}`, updatedExpense);
+            // Handle response if needed
+            getExpenses(); // Refresh expenses after updating
+        } catch (error) {
+            setError(error.response.data.message);
+        }
+    };
     
 
 
@@ -115,6 +126,7 @@ export const GlobalProvider = ({children}) => {
             transactionHistory,
             error,
             getModifiedExpensesByLevel,
+            updateExpense,
             setError
         }}>
             {children}
