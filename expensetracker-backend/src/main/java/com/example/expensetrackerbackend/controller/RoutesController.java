@@ -38,6 +38,11 @@ public class RoutesController {
         return expenseController.deleteExpense(id);
     }
 
+    @PutMapping("/update-expense/{id}")
+    public ResponseEntity<String> updateExpense(@PathVariable Long id, @RequestBody Expense expense) {
+        return expenseController.updateExpense(id, expense);
+    }
+
     @PostMapping("/add-income")
     public ResponseEntity<String> addIncome(@RequestBody Income income) {
         return incomeController.addIncome(income);
