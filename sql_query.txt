@@ -1,5 +1,12 @@
 create database demo;
 use demo;
+
+CREATE TABLE user(
+	email VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    psswrd VARCHAR(20) NOT NULL
+);
+
 CREATE TABLE Expense (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
@@ -29,13 +36,7 @@ CREATE TABLE incomes (
     FOREIGN KEY (user_email) references user(email)
 );
 
-CREATE TABLE user(
-	email VARCHAR(50) PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    psswrd VARCHAR(20) NOT NULL
-);
 select * from expense;
-
 
 
 -- dummy data
