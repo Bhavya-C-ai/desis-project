@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.expensetrackerbackend.entity.Expense;
 import com.example.expensetrackerbackend.repository.ExpenseRepository;
+import com.example.expensetrackerbackend.entity.User;
+import com.example.expensetrackerbackend.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/expenses")
@@ -18,6 +21,9 @@ public class ExpenseController {
 
     @Autowired
     private ExpenseRepository expenseRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/add")
     public ResponseEntity<String> addExpense(@RequestBody Expense expenseRequest) {
@@ -84,6 +90,52 @@ public class ExpenseController {
             expenseRepository.save(existingExpense);
 
             return ResponseEntity.status(HttpStatus.OK).body("Expense Updated");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server Error");
+        }
+    }
+
+
+    @GetMapping("/get-streak")
+    public ResponseEntity<Integer> getStreak(@RequestParam String userEmail) {
+        try {
+            User user = userRepository.findByEmail(userEmail);
+            if (user != null) {
+                int streak = user.getStreak();
+                return ResponseEntity.status(HttpStatus.OK).body(streak);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // User not found
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/get-last-added-date")
+    public ResponseEntity<Date> getLastAddedDate() {
+        try {
+            Optional<Date> lastAddedDateOptional = expenseRepository.findLastAddedDate();
+            if (lastAddedDateOptional.isPresent()) {
+                return ResponseEntity.status(HttpStatus.OK).body(lastAddedDateOptional.get());
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // No last added date found
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PostMapping("/update-streak")
+    public ResponseEntity<String> updateStreak(@RequestParam String userEmail, @RequestParam int streak) {
+        try {
+            User user = userRepository.findByEmail(userEmail);
+            if (user != null) {
+                user.setStreak(streak);
+                userRepository.save(user);
+                return ResponseEntity.status(HttpStatus.OK).body("Streak updated successfully");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server Error");
         }
