@@ -11,6 +11,7 @@ export const GlobalProvider = ({children}) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
+    const [modifiedExpenses, setModifiedExpenses] = useState([])
     const [error, setError] = useState(null)
 
     //calculate incomes
@@ -86,11 +87,33 @@ export const GlobalProvider = ({children}) => {
         return history.slice(0, 3)
     }
 
+    const getModifiedExpensesByLevel = async (level) => {
+        try {
+            const response = await axios.get(`${BASE_URL}get-suggestion/${level}`);
+            setModifiedExpenses(response.data);
+        } catch (error) {
+            setError(error.response.data.message);
+        }
+    };
+
+    const updateExpense = async (updatedExpense) => {
+        try {
+            console.log("hii")
+            const response = await axios.put(`${BASE_URL}update-expense/${updatedExpense.id}`, updatedExpense);
+            // Handle response if needed
+            getExpenses(); // Refresh expenses after updating
+        } catch (error) {
+            setError(error.response.data.message);
+        }
+    };
+    
+
 
     return (
         <GlobalContext.Provider value={{
             addIncome,
             getIncomes,
+            modifiedExpenses,
             incomes,
             deleteIncome,
             expenses,
@@ -102,6 +125,8 @@ export const GlobalProvider = ({children}) => {
             totalBalance,
             transactionHistory,
             error,
+            getModifiedExpensesByLevel,
+            updateExpense,
             setError
         }}>
             {children}

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { dateFormat } from '../../utils/dateFormat';
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
+import { edit,bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
 import Button from '../Button/Button';
+import EditExpenseForm from '../Expenses/EditExpenseForm';
 
 function IncomeItem({
     id,
@@ -15,6 +16,8 @@ function IncomeItem({
     indicatorColor,
     type
 }) {
+
+    const [editMode, setEditMode] = useState(false);
 
     const categoryIcon = () =>{
         switch(category) {
@@ -63,36 +66,66 @@ function IncomeItem({
     }
 
     console.log('type', type)
+    const handleEdit = () => {
+        setEditMode(true);
+    };
 
+    const onClose = () => {
+        setEditMode(false);
+    };
     return (
         <IncomeItemStyled indicator={indicatorColor}>
             <div className="icon">
                 {type === 'expense' ? expenseCatIcon() : categoryIcon()}
             </div>
             <div className="content">
-                <h5>{title}</h5>
-                <div className="inner-content">
-                    <div className="text">
-                        <p>{dollar} {amount}</p>
-                        <p>{calender} {dateFormat(date)}</p>
-                        <p>
-                            {comment}
-                            {description}
-                        </p>
-                    </div>
-                    <div className="btn-con">
-                        <Button 
-                            icon={trash}
-                            bPad={'1rem'}
-                            bRad={'50%'}
-                            bg={'var(--primary-color'}
-                            color={'#fff'}
-                            iColor={'#fff'}
-                            hColor={'var(--color-green)'}
-                            onClick={() => deleteItem(id)}
-                        />
-                    </div>
-                </div>
+                {!editMode ? (
+                        <>
+                            <h5>{title}</h5>
+                            <div className="inner-content">
+                                <div className="text">
+                                    <p>{dollar} {amount}</p>
+                                    <p>{calender} {dateFormat(date)}</p>
+                                    <p>
+                                        {comment}
+                                        {description}
+                                    </p>
+                                </div>
+                                <div className="btn-con">
+                                    <Button 
+                                        icon={trash}
+                                        bPad={'1rem'}
+                                        bRad={'50%'}
+                                        bg={'var(--primary-color'}
+                                        color={'#fff'}
+                                        iColor={'#fff'}
+                                        hColor={'var(--color-green)'}
+                                        onClick={() => deleteItem(id)}
+                                    />
+                                    {type === 'expense' && (
+                                        <Button 
+                                            icon={edit}
+                                            bPad={'1rem'}
+                                            bRad={'50%'}
+                                            bg={'var(--primary-color'}
+                                            color={'#fff'}
+                                            iColor={'#fff'}
+                                            hColor={'var(--color-green)'}
+                                            onClick={handleEdit} // Toggle edit mode
+                                        />
+                                    )}
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <EditExpenseForm id={id}
+                        title={title}
+                        amount={amount}
+                        date={date}
+                        category={category}
+                        description={description}
+                        onClose={onClose}/>
+                    )}
             </div>
         </IncomeItemStyled>
     )

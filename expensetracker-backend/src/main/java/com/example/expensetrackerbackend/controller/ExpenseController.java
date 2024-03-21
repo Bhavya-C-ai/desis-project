@@ -36,7 +36,7 @@ public class ExpenseController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Amount must be a positive number!");
             }
             Date currentDate = new Date();
-            Expense result = new Expense(null, title, amount, null, date, category, description, null, currentDate, null);
+            Expense result = new Expense(null, title, amount, "expense", date, category, description, null, currentDate, null);
             expenseRepository.save(result);
 
             return ResponseEntity.status(HttpStatus.OK).body("Expense Added");
@@ -49,7 +49,6 @@ public class ExpenseController {
     public ResponseEntity<List<Expense>> getExpense() {
         try {
             List<Expense> expenses = expenseRepository.findAll();
-            System.out.println(expenses);
             return ResponseEntity.status(HttpStatus.OK).body(expenses);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -80,6 +79,7 @@ public class ExpenseController {
             existingExpense.setCategory(expenseRequest.getCategory());
             existingExpense.setDescription(expenseRequest.getDescription());
             existingExpense.setDate(expenseRequest.getDate());
+            existingExpense.setUpdated_at(new Date());
 
             expenseRepository.save(existingExpense);
 

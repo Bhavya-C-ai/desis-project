@@ -10,6 +10,7 @@ import Transactions from './Components/Transactions/Transactions';
 import Income from './Components/Income/Income'
 import Expenses from './Components/Expenses/Expenses';
 import Login from './Components/Login/Login.js';
+import Suggestion from './Components/Suggestion/Suggestion.js';
 import { useGlobalContext } from './context/globalContext';
 
 function App() {
@@ -28,8 +29,10 @@ function App() {
         return <Income />
       case 4: 
         return <Expenses />
-        case 5: 
+      case 5: 
         return <Login />
+      case 6:
+        return <Suggestion />
       default: 
         return <Dashboard />
     }

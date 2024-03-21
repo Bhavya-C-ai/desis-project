@@ -10,7 +10,7 @@ import com.example.expensetrackerbackend.entity.Expense;
 import com.example.expensetrackerbackend.entity.Income;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
 public class RoutesController {
 
@@ -19,6 +19,9 @@ public class RoutesController {
 
     @Autowired
     private IncomeController incomeController;
+
+    @Autowired
+    private SuggestionController suggestionController;
 
     @PostMapping("/add-expense")
     public ResponseEntity<String> addExpense(@RequestBody Expense expense) {
@@ -35,6 +38,11 @@ public class RoutesController {
         return expenseController.deleteExpense(id);
     }
 
+    @PutMapping("/update-expense/{id}")
+    public ResponseEntity<String> updateExpense(@PathVariable Long id, @RequestBody Expense expense) {
+        return expenseController.updateExpense(id, expense);
+    }
+
     @PostMapping("/add-income")
     public ResponseEntity<String> addIncome(@RequestBody Income income) {
         return incomeController.addIncome(income);
@@ -49,5 +57,10 @@ public class RoutesController {
     public ResponseEntity<String> deleteIncome(@PathVariable Long id) {
         return incomeController.deleteIncome(id);
     }
-}
 
+    @GetMapping("/get-suggestion/{level}")
+    public ResponseEntity<List<Expense>> getSuggestion(@PathVariable String level){
+        System.out.println(level);
+        return suggestionController.getSuggestion(level);
+    }
+}
