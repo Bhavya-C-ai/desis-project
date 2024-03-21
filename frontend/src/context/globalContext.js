@@ -144,6 +144,14 @@ export const GlobalProvider = ({children}) => {
             setError(error.response.data.message);
         }
     };
+
+    const postScheduleEmails = async (scheduleEmailRequest) => {
+        console.log('Posted email job schedule successfully try');
+        const response = await axios.post(`${BASE_URL}schedule-emails`, scheduleEmailRequest)
+            .catch((err) =>{
+                setError(err.response.data.message)
+            })
+    };
     
 
 
@@ -168,7 +176,8 @@ export const GlobalProvider = ({children}) => {
             setError,
             fetchStreak,
             fetchLastAddedDate,
-            sendStreakToBackend
+            sendStreakToBackend,
+            postScheduleEmails
         }}>
             {children}
         </GlobalContext.Provider>
