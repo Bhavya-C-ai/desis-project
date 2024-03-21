@@ -1,5 +1,6 @@
 package com.example.expensetrackerbackend.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,20 @@ public class RoutesController {
     public ResponseEntity<List<Expense>> getSuggestion(@PathVariable String level){
         System.out.println(level);
         return suggestionController.getSuggestion(level);
+    }
+
+    @GetMapping("/get-streak")
+    public ResponseEntity<Integer> getStreak(@RequestParam String userEmail) {
+        return expenseController.getStreak(userEmail);
+    }
+
+    @GetMapping("/get-last-added-date")
+    public ResponseEntity<Date> getLastAddedDate(){
+        return expenseController.getLastAddedDate();
+    }
+
+    @PostMapping("/update-streak")
+    public ResponseEntity<String> updateStreak(@RequestParam String userEmail, @RequestParam int streak){
+        return expenseController.updateStreak(userEmail,streak);
     }
 }
