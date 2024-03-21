@@ -17,7 +17,7 @@ public class ExpenseService {
         categoryPriorities.put("education", 1);
         categoryPriorities.put("groceries", 1);
         categoryPriorities.put("health", 1);
-        categoryPriorities.put("traveling", 2);
+        categoryPriorities.put("travelling", 2);
         categoryPriorities.put("clothing", 2);
         categoryPriorities.put("subscriptions", 3);
         categoryPriorities.put("takeaways", 3);
