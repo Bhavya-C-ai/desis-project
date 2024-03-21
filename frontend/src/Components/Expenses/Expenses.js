@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react';
 import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
@@ -7,16 +7,27 @@ import IncomeItem from '../IncomeItem/IncomeItem';
 import ExpenseForm from './ExpenseForm';
 
 function Expenses() {
-    const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
+    const {fetchStreak, fetchLastAddedDate, addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
+    const [streak, setStreak] = useState(0);
 
     useEffect(() =>{
+        fetchStreak();
         getExpenses()
     }, [])
+
+    useEffect(() => {
+        // Update streak state when fetched from context
+        if (streak !== null) {
+            setStreak(streak);
+        }
+    }, [streak]);
+
     return (
         <ExpenseStyled>
             <InnerLayout>
                 <h1>Expenses</h1>
                 <h2 className="total-income">Total Expense: <span>${totalExpenses()}</span></h2>
+                <p>User Streak: {streak}</p>
                 <div className="income-content">
                     <div className="form-container">
                         <ExpenseForm />
