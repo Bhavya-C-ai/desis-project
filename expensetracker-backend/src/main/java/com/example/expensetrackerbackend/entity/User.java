@@ -15,8 +15,11 @@ import jakarta.persistence.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class User {
+    @Id
     private String email;
     private String name;
     private String psswrd;
+    private int streak=0;
 }
