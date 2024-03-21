@@ -28,6 +28,10 @@ const PieChart = () => {
 
       const aggregatedData = {};
       currentMonthExpenses.forEach((expense) => {
+        if (!expenses) {
+          console.error("Bhavya Expenses array is undefined or null.");
+          return;
+      }
         if (aggregatedData[expense.category]) {
           aggregatedData[expense.category] += expense.amount;
         } else {

@@ -4,12 +4,16 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../../context/globalContext';
 
 function PieChart() {
-    const { modifiedExpenses } = useGlobalContext();
+    const { modifiedExpenses, expenses } = useGlobalContext();
 
     // Function to aggregate expenses by category
     const aggregateExpensesByCategory = expenses => {
+        if (!expenses) {
+            console.error("Expenses array is undefined or null.");
+            return;
+        }
         const aggregatedData = {};
-        expenses.forEach(expense => {
+        expenses.forEach((expense) => {
             if (aggregatedData[expense.category]) {
                 aggregatedData[expense.category] += expense.amount;
             } else {

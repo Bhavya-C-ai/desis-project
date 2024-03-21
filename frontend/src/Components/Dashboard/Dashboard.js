@@ -15,6 +15,7 @@ function Dashboard() {
         totalBalance,
         getIncomes,
         getExpenses,
+        postScheduleEmails
     } = useGlobalContext();
     const [emailNotification, setEmailNotification] = useState(false);
 
@@ -22,6 +23,20 @@ function Dashboard() {
         getIncomes();
         getExpenses();
     }, []);
+
+    useEffect(() => {
+      if (emailNotification) {
+        const payload = {
+          email: "20je0800@fme.iitism.ac.in",
+          subject: "Things I wanna say to my Future me",
+          body: `Dear Future me, <br><br> <b> This is your total Income = ${totalIncome()}</b> 
+          <br><br> <b> This is your total Balance = ${totalBalance()}</b> <br><br> <b> This is your total Expenses = ${totalExpenses()} </b> <br><br><br>Riya!`,
+          dateTime: "2024-03-21T22:08:00", // update dateTime to after
+          timeZone: "Asia/Kolkata"
+        };
+        postScheduleEmails(payload);
+      }
+    }, [emailNotification]);
 
     const handleCheckboxChange = (event) => {
         setEmailNotification(event.target.checked);
