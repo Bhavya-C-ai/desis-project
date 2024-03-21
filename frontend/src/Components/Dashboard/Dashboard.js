@@ -24,7 +24,6 @@ function Dashboard() {
     }, []);
 
     const handleCheckboxChange = (event) => {
-        // console.log("check box clicked or not:", event.target.checked);
         setEmailNotification(event.target.checked);
     };
 
@@ -37,25 +36,25 @@ function Dashboard() {
                         <Chart />
                         <div className="amount-con">
                             <div className="income">
-                                <h2>Total Income</h2>
-                                <p>
+                                <h2 className="title">Total Income</h2>
+                                <p className="amount">
                                     {dollar} {totalIncome()}
                                 </p>
                             </div>
                             <div className="expense">
-                                <h2>Total Expense</h2>
-                                <p>
+                                <h2 className="title">Total Expense</h2>
+                                <p className="amount">
                                     {dollar} {totalExpenses()}
                                 </p>
                             </div>
                             <div className="balance">
-                                <h2>Total Balance</h2>
-                                <p>
+                                <h2 className="title">Total Balance</h2>
+                                <p className="amount">
                                     {dollar} {totalBalance()}
                                 </p>
                             </div>
                             <div className="email">
-                                <h2>Do you want email notifs?</h2> <br/>
+                                <h2>Do you want email notifs?</h2>
                                 <label className="email-con">
                                     <input
                                         type="checkbox"
@@ -118,12 +117,15 @@ const DashboardStyled = styled.div`
           box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
           border-radius: 20px;
           padding: 1rem;
-          p {
-            font-size: 3.5rem;
-            font-weight: 700;
-          }
         }
-
+        .title {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        .amount {
+          font-size: 2rem;
+          font-weight: 700;
+        }
         .balance {
           grid-column: 1 / 3;
           display: flex;
@@ -133,7 +135,7 @@ const DashboardStyled = styled.div`
           p {
             color: var(--color-green);
             opacity: 0.6;
-            font-size: 4.5rem;
+            font-size: 2.5rem;
           }
         }
         .email-con {
