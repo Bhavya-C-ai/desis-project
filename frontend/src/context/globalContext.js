@@ -13,6 +13,44 @@ export const GlobalProvider = ({children}) => {
     const [expenses, setExpenses] = useState([])
     const [modifiedExpenses, setModifiedExpenses] = useState([])
     const [error, setError] = useState(null)
+    const [streak, setStreak] = useState(0)
+    const [lastAddedDate, setLastAddedDate] = useState(null)
+
+
+    const fetchStreak = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}/get-streak`);
+            setStreak(response.data.streak);
+        } catch (error) {
+            console.error('Error fetching streak:', error);
+        }
+    };
+
+    const fetchLastAddedDate = async () => {
+        try {
+            const response = await axios.get(`${BASE_URL}/get-last-added-date`);
+            setLastAddedDate(response.data.lastAddedDate);
+        } catch (error) {
+            console.error('Error fetching last added date:', error);
+        }
+    };
+
+    const sendStreakToBackend = async (updatedStreak) => {
+        try {
+            // Make a POST request to update the streak on the backend
+            const response = await axios.post(`${BASE_URL}/update-streak`, { streak: updatedStreak });
+            if (response.status === 200) {
+                console.log('Streak updated successfully on the backend');
+                // Handle success if needed
+            } else {
+                console.error('Failed to update streak on the backend');
+                // Handle failure if needed
+            }
+        } catch (error) {
+            console.error('Error updating streak on the backend:', error);
+            // Handle error if needed
+        }
+    };
 
     //calculate incomes
     const addIncome = async (income) => {
@@ -127,7 +165,10 @@ export const GlobalProvider = ({children}) => {
             error,
             getModifiedExpensesByLevel,
             updateExpense,
-            setError
+            setError,
+            fetchStreak,
+            fetchLastAddedDate,
+            sendStreakToBackend
         }}>
             {children}
         </GlobalContext.Provider>
