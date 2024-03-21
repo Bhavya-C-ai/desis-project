@@ -8,7 +8,7 @@ import { plus } from '../../utils/Icons';
 
 
 function ExpenseForm() {
-    const {addExpense, error, setError} = useGlobalContext()
+    const {addExpense, error, setError, fetchLastAddedDate, fetchStreak, sendStreakToBackend} = useGlobalContext()
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -24,16 +24,46 @@ function ExpenseForm() {
         setError('')
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        addExpense(inputState)
-        setInputState({
-            title: '',
-            amount: '',
-            date: '',
-            category: '',
-            description: '',
-        })
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+            // Add the expense
+            await addExpense(inputState);
+    
+            // Fetch the last added date
+            await fetchLastAddedDate();
+            const lastAddedDate = fetchLastAddedDate(); // Get lastAddedDate from the context
+    
+            // Fetch the streak
+            await fetchStreak();
+            const streak = fetchStreak(); // Get streak from the context
+    
+            // Check if the addition is continuous
+            const currentDate = new Date();
+            const timeDifference = currentDate - lastAddedDate;
+            const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+            const isContinuous = daysDifference === 1;
+    
+            // Reset the streak if the addition is not continuous
+            if (!isContinuous) {
+                await sendStreakToBackend(0); // Reset streak
+            } else {
+                await sendStreakToBackend(streak + 1); // Increment streak
+            }
+    
+    
+            setInputState({
+                title: '',
+                amount: '',
+                date: '',
+                category: '',
+                description: '',
+            });
+        } catch (error) {
+            console.error('Error adding expense:', error);
+            setError('Error adding expense. Please try again.');
+        }
     }
 
     return (
