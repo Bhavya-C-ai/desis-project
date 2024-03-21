@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import com.example.expensetrackerbackend.entity.Expense;
 import com.example.expensetrackerbackend.entity.Income;
 
+import com.example.expensetrackerbackend.payload.ScheduleEmailRequest;
+import com.example.expensetrackerbackend.payload.ScheduleEmailResponse;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
@@ -23,6 +26,9 @@ public class RoutesController {
 
     @Autowired
     private SuggestionController suggestionController;
+
+    @Autowired
+    private EmailJobSchedulerController emailJobSchedulerController;
 
     @PostMapping("/add-expense")
     public ResponseEntity<String> addExpense(@RequestBody Expense expense) {
@@ -78,5 +84,11 @@ public class RoutesController {
     @PostMapping("/update-streak")
     public ResponseEntity<String> updateStreak(@RequestParam String userEmail, @RequestParam int streak){
         return expenseController.updateStreak(userEmail,streak);
+    }
+
+    @PostMapping("/schedule-emails")
+    public ResponseEntity<ScheduleEmailResponse> scheduleEmail(@RequestBody ScheduleEmailRequest scheduleEmailRequest){
+        System.out.println("schedule Email Routes Controller");
+        return emailJobSchedulerController.scheduleEmail(scheduleEmailRequest);
     }
 }
