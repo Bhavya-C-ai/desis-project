@@ -1,4 +1,20 @@
-# desis-project
+#Personal Expense Tracker
+
+Key Features:
+- Record income and expenses  🔗 
+- Get a visual representation of your expenses 📝 
+- Get monthly update on income, expense and balance via e-mail 🔐 
+- Spending allocation suggestions🌲
+
+  Tech Stacks:
+- ReactJS
+- ChartJS
+- Styled-components
+- Spring Boot
+- Quartz - Job Scheduler
+- Spring Mail
+- SQL
+
 
 ### Prerequisites
 
