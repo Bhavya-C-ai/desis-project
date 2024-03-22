@@ -75,7 +75,7 @@ const PieChart = () => {
 
   return (
     <PieChartStyled>
-      <h2>Monthly Expenses by Category</h2>
+      <h2>Expenses by Category</h2>
       <Pie className="chart" data={pieChartData} />
       {console.log(pieChartData)}
     </PieChartStyled>
