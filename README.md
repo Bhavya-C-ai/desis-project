@@ -1,7 +1,7 @@
 # Personal Expense Tracker
 
 Key Features:
-- Record income and expenses  🔗
+- Record income and expenses  :pencil2:
   ![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/eef19222-055f-42f3-aa1a-698a399cd974)
 ![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/4fee6037-7cf0-4896-bca5-86e4f8906aae)
 
