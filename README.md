@@ -49,7 +49,8 @@ This project aims to develop a user-friendly application for expense tracking an
 ### Backend
 ![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/0da2354a-e159-45ee-90ad-46b599ae3802)
 ### Frontend
-![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/36ae8743-b986-431e-a349-34377c8ffd35)
+![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/6f4d5d9a-d317-4b20-9a11-1fe3ec801cdf)
+
 
 
 
