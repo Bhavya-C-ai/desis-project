@@ -7,13 +7,16 @@ Key Features:
 - Spending allocation suggestions🌲
 
 Tech Stacks:
-- ReactJS
-- ChartJS
-- Styled-components
-- Spring Boot
-- Quartz - Job Scheduler
-- Spring Mail
-- SQL
+1. Frontend
+    - ReactJS
+    - ChartJS
+    - Styled-components
+2. Backend
+    - Spring Boot
+    - Quartz - Job Scheduler
+    - Spring Mail
+3. Database
+    - SQL
 
 
 ### Prerequisites
