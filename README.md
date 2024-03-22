@@ -65,7 +65,7 @@ This project aims to develop a user-friendly application for expense tracking an
 
 ### Start Server (port: 8080)
 
-Execute the main method in the expensetracker-backend.src.main.java.ExpensetrackerBackendApplication class from IDE
+Execute the main method in the ```shell expensetracker-backend.src.main.java.ExpensetrackerBackendApplication``` class from IDE
 
 ### Install Frontend packages
 
