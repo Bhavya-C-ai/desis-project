@@ -7,7 +7,7 @@ CREATE TABLE user(
     psswrd VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE Expense (
+CREATE TABLE expense (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
     amount DECIMAL(20, 2) NOT NULL,
@@ -36,8 +36,9 @@ CREATE TABLE incomes (
     FOREIGN KEY (user_email) references user(email)
 );
 
-select * from expense;
-
+insert into user(email,name,psswrd) values(
+	'user1@example.com','abc','13abc'
+);
 
 -- dummy data
 INSERT INTO expense (title, amount, type, date, category, description, user_email) VALUES
