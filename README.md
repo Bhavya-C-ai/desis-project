@@ -6,7 +6,7 @@ Key Features:
 - Get monthly update on income, expense and balance via e-mail 🔐 
 - Spending allocation suggestions🌲
 
-  Tech Stacks:
+Tech Stacks:
 - ReactJS
 - ChartJS
 - Styled-components
