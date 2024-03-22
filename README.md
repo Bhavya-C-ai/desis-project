@@ -44,6 +44,8 @@ This project aims to develop a user-friendly application for expense tracking an
     - SQL
 
 ## Folder Structure
+![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/4b313341-362e-46c0-b7b5-f8e3099662f8)
+
 ### Backend
 ![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/0da2354a-e159-45ee-90ad-46b599ae3802)
 ### Frontend
