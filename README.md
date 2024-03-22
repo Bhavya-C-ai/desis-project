@@ -1,4 +1,4 @@
-#Personal Expense Tracker
+# Personal Expense Tracker
 
 Key Features:
 - Record income and expenses  🔗 
