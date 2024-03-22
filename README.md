@@ -63,7 +63,7 @@ This project aims to develop a user-friendly application for expense tracking an
 - Set up SQL server and create a database using sql_query.txt
 - Replace the credentials with your setup in application.properties
 
-### Start Backend
+### Start Server (port: 8080)
 
 Execute the main method in the expensetracker-backend.src.main.java.ExpensetrackerBackendApplication class from IDE
 
@@ -74,7 +74,7 @@ cd frontend
 npm i
 ```
 
-### Start the app
+### Start client (port: 3000)
 ```shell
 npm start
 ```
