@@ -1,7 +1,11 @@
 # Personal Expense Tracker
 
-### Introduction
+## Introduction
 This project aims to develop a user-friendly application for expense tracking and financial management. The application will streamline the process for users to record their expenses, track spending patterns over time, visualize data through charts and graphs, identify cost-cutting opportunities, and improve financial decision-making. To enhance user engagement, the application will gamify the experience by tracking user activity, maintaining a streak for continuous expense tracking, and sending notifications via email regarding expenses, incomes, and current balances.
+
+### Flowchart
+### ER Diagram
+![image](https://github.com/Bhavya-C-ai/desis-project/assets/96719986/d71b32d7-0019-4428-9a2b-746db90a5708)
 
 ### Key Features:
 - Record income and expenses  :pencil2:
