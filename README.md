@@ -12,4 +12,6 @@ npm i
 ```
 
 ### Start the app
+```shell
 npm start
+```
