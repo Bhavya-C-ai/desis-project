@@ -67,7 +67,7 @@ This project aims to develop a user-friendly application for expense tracking an
 ## Prerequisites
 
 - Node version 18.x.x
-- JDK 21
+- JDK 17 or above
 - Set up SQL server and create a database using sql_query.txt
 - Replace the credentials with your setup in application.properties
 
